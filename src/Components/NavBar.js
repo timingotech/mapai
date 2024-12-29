@@ -14,6 +14,8 @@ import {
   ChevronRight,
   LogOut
 } from 'lucide-react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faComments } from '@fortawesome/free-solid-svg-icons'
 import Logo from '../Images/Logo.png';
 import ImageOut from '../Images/ImageOut.png';
 

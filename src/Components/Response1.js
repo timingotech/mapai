@@ -2,7 +2,9 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Image1 from '../Images/Image.png'
-import {MessageSquare,ChevronLeft, Bell  } from 'lucide-react';
+import {MessageSquare,ChevronLeft, Bell, ChevronDown  } from 'lucide-react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTimes , faComments, faBuilding } from '@fortawesome/free-solid-svg-icons';
 
 const Response1 = () => {
       const [currentStep, setCurrentStep] = useState(1);    
@@ -43,8 +45,9 @@ const Response1 = () => {
           className="px-4 py-2 border rounded-lg mr-4"
         />
         <Bell className="text-gray-500 mr-4" />
-        <MessageSquare className="text-gray-500 mr-4" />
+        <FontAwesomeIcon className="text-gray-500 mr-4 text-xl"  icon={faComments} />
         <img src={Image1} alt="User" className="w-8 h-8 rounded-full" />
+        <ChevronDown className='text-gray-500 mr-4'/>
       </div>
     </div> 
       <div className="mb-8">
@@ -118,7 +121,8 @@ const Response1 = () => {
               type="date"
               value="2024-12-02"
               className="w-full p-2 border rounded-md"
-            />
+            /><br/>
+            <p className='text-gray-500 text-sm'>Calculated based on lead time and issue date</p>
           </div>
         </div>
 

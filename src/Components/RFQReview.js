@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
-import { Bell, MessageSquare, ChevronLeft, X, Check, FileText, Edit2, Trash2, ChevronUp } from 'lucide-react';
+import { Bell, MessageSquare, ChevronLeft, X, Check, FileText, Edit2, Trash2, ChevronUp, ChevronDown } from 'lucide-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTimes , faHome, faBuilding, faSpinner, faCheck } from '@fortawesome/free-solid-svg-icons';
+import { faTimes , faHome, faBuilding, faSpinner, faComments } from '@fortawesome/free-solid-svg-icons';
 import Image1 from '../Images/Image.png'
 import Misc from '../Images/Misc icon.png'
 import { useNavigate } from 'react-router-dom';
@@ -225,7 +225,7 @@ const RFQReview = () => {
           }
         ]
       };
-    const [currentStep, setCurrentStep] = useState(1);    
+    const [currentStep, setCurrentStep] = useState(3);    
   
   const steps = [
     { number: 1, title: 'Request Information', description: 'Provide details about the RFQ' },
@@ -279,7 +279,7 @@ const RFQReview = () => {
           className="px-4 py-2 border rounded-lg mr-4"
         />
         <Bell className="text-gray-500 mr-4" />
-        <MessageSquare className="text-gray-500 mr-4" />
+        <FontAwesomeIcon className="text-gray-500 mr-4 text-xl"  icon={faComments} />
         <img src={Image1} alt="User" className="w-8 h-8 rounded-full" />
       </div>
     </div>
