@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import { Bell, MessageSquare, ChevronLeft, X, Check, FileText, Edit2, Trash2, ChevronUp, ChevronDown } from 'lucide-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTimes , faHome, faBuilding, faSpinner, faComments } from '@fortawesome/free-solid-svg-icons';
+import { faTimes , faHome, faBuilding, faSpinner, faComments,faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 import Image1 from '../Images/Image.png'
 import Misc from '../Images/Misc icon.png'
 import { useNavigate } from 'react-router-dom';
@@ -262,7 +262,7 @@ const RFQReview = () => {
 
   const handleSuccessClose = () => {
     setShowSuccess(false);
-    navigate('/quotes');
+    navigate('/procurement/quotes');
   };
   return (
     <div className="ml-[350px] min-h-screen ">
@@ -323,8 +323,10 @@ const RFQReview = () => {
         {/* Request Information Section */}
         <div className="flex justify-between mb-8 shadow p-6 rounded-lg">
                    <div className="space-y-6">
-                     <h2 className="text-lg font-semibold">Quote Information</h2>
-                     <div className=" space-y-4">
+                    <div className='flex items-center justify-between'>
+                    <h2 className="text-lg font-semibold ">Quote Information</h2> 
+                    </div>
+                     <div className=" space-y-4 ">
                        <div className='flex space-x-[250px]'>
                          <div className="text-sm text-gray-500">Title</div>
                          <div>{quoteData.title}</div>
@@ -342,6 +344,7 @@ const RFQReview = () => {
                            {quoteData.requester.name} 
                            <span className='text-gray-400 ml-1'>• {quoteData.requester.role} </span>
                          </div>
+                         
                        </div>
                        
                        <div className='flex space-x-[205px]'>
@@ -352,10 +355,9 @@ const RFQReview = () => {
                        <div className='text-sm text-gray-500'>Expected delivery date: </div>
                        <div>{quoteData.expectedDelivery}</div> 
                         </div>
-
                      </div>
                    </div>
-                   
+                   <FontAwesomeIcon className='text-gray-500 text-lg cursor-pointer' icon={faPenToSquare} />
                  </div>
 
         {/* Items Table */}
@@ -364,7 +366,7 @@ const RFQReview = () => {
                     <table className="w-full">
                       <thead className="bg-gray-50">
                         <tr>
-                          <th className="w-8 p-3">
+                          <th className="w-9 p-3">
                             <input type="checkbox" className="rounded" />
                           </th>
                           <th className="text-left p-3">Items</th>
@@ -400,7 +402,7 @@ const RFQReview = () => {
                       </tbody>
                     </table>
         
-                    <div className="flex justify-end mt-6 space-x-8">
+                    <div className="flex justify-end mt-6 space-x-[70px] mr-[210px]">
                       <div>
                         <div className="text-sm text-gray-500">Sub Total</div>
                         <div className="font-semibold">$8,000.00</div>

@@ -12,7 +12,9 @@ import {
   HelpCircle,
   ChevronDown,
   ChevronRight,
-  LogOut
+  LogOut,
+  Banknote,
+  MessageCircleMore 
 } from 'lucide-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faComments } from '@fortawesome/free-solid-svg-icons'
@@ -34,8 +36,8 @@ const Navbar = () => {
       name: 'Procurement',
       subMenu: ['Quotes', 'Orders']
     },
-    { path: '/finance', icon: <DollarSign size={20} />, name: 'Finance' },
-    { path: '/communication', icon: <MessageSquare size={20} />, name: 'Communication', notification: 10 },
+    { path: '/finance', icon: <Banknote size={20} />, name: 'Finance' },
+    { path: '/communication', icon: <MessageCircleMore  size={20} />, name: 'Communication', notification: 10 },
     { path: '/calendar', icon: <Calendar size={20} />, name: 'Calendar', notification: 10 },
     { path: '/contracts', icon: <FileText size={20} />, name: 'Contracts' }
   ];
