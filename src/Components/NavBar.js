@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import {
   LayoutDashboard,
@@ -11,22 +11,29 @@ import {
   Settings,
   HelpCircle,
   ChevronDown,
+  ChevronRight,
   LogOut
 } from 'lucide-react';
-import Logo from '../Images/Logo.png'
-import ImageOut from '../Images/ImageOut.png'
+import Logo from '../Images/Logo.png';
+import ImageOut from '../Images/ImageOut.png';
 
 const Navbar = () => {
   const location = useLocation();
 
+  // State to manage which menu is open
+  const [openMenu, setOpenMenu] = useState(null);
+
   const navItems = [
     { path: '/dashboard', icon: <LayoutDashboard size={20} />, name: 'Dashboard' },
     { path: '/inventory', icon: <Package size={20} />, name: 'Inventory' },
-    { path: '/procurement', icon: <ShoppingCart size={20} />, name: 'Procurement', 
-      subMenu: ['Quotes', 'Orders'] },
-    { path: '/finance', icon: <DollarSign size={20} />, name: 'Finance', hasChevron: true },
-    { path: '/communication', icon: <MessageSquare size={20} />, name: 'Communication', 
-      notification: 10 },
+    {
+      path: '/procurement',
+      icon: <ShoppingCart size={20} />,
+      name: 'Procurement',
+      subMenu: ['Quotes', 'Orders']
+    },
+    { path: '/finance', icon: <DollarSign size={20} />, name: 'Finance' },
+    { path: '/communication', icon: <MessageSquare size={20} />, name: 'Communication', notification: 10 },
     { path: '/calendar', icon: <Calendar size={20} />, name: 'Calendar', notification: 10 },
     { path: '/contracts', icon: <FileText size={20} />, name: 'Contracts' }
   ];
@@ -36,41 +43,51 @@ const Navbar = () => {
     { path: '/settings', icon: <Settings size={20} />, name: 'Settings' }
   ];
 
+  const toggleSubMenu = (path) => {
+    setOpenMenu(openMenu === path ? null : path); // Toggle submenu open/close
+  };
+
   return (
     <div className="w-[350px] h-screen bg-gray-100 flex flex-col border-r fixed px-6">
       {/* Logo Section */}
       <div className="p-6 px-7">
-        <img src={Logo}></img>
+        <img src={Logo} alt="Logo" />
       </div>
 
       {/* Main Navigation */}
       <nav className="flex-1 px-4 space-y-1 overflow-y-auto">
         {navItems.map((item) => (
           <div key={item.path}>
-            <Link to={item.path}>
-              <div className={`flex items-center justify-between p-3 rounded-lg
-                ${location.pathname.includes(item.path) ? 'bg-blue-50 text-blue-600' : 'text-gray-600 hover:bg-gray-50'}`}>
-                <div className="flex items-center gap-3">
-                  {item.icon}
-                  <span>{item.name}</span>
-                </div>
-                {item.notification && (
-                  <span className="bg-blue-600 text-white text-xs px-2 py-0.5 rounded-full">
-                    {item.notification}
-                  </span>
-                )}
-                {item.hasChevron && <ChevronDown size={16} />}
+            <div
+              className={`flex items-center justify-between p-3 rounded-lg cursor-pointer 
+                ${location.pathname.includes(item.path) ? 'bg-blue-50 text-blue-600' : 'text-gray-600 hover:bg-gray-50'}`}
+              onClick={() => (item.subMenu ? toggleSubMenu(item.path) : null)}
+            >
+              <div className="flex items-center gap-3">
+                {item.icon}
+                <span>{item.name}</span>
               </div>
-            </Link>
-            {item.subMenu && location.pathname.includes(item.path) && (
+              {item.subMenu && (
+                <div>
+                  {openMenu === item.path ? <ChevronDown size={16} /> : <ChevronRight size={16} />}
+                </div>
+              )}
+              {item.notification && (
+                <span className="bg-blue-600 text-white text-xs px-2 py-0.5 rounded-full">
+                  {item.notification}
+                </span>
+              )}
+            </div>
+            {/* Submenu */}
+            {item.subMenu && openMenu === item.path && (
               <div className="ml-11 space-y-1">
                 {item.subMenu.map((subItem) => (
-                  <Link 
-                    key={subItem} 
+                  <Link
+                    key={subItem}
                     to={`${item.path}/${subItem.toLowerCase()}`}
-                    className={`block p-2 text-sm rounded-lg
-                      ${location.pathname.includes(subItem.toLowerCase()) 
-                        ? 'text-blue-600 font-medium' 
+                    className={`block p-2 text-sm rounded-lg 
+                      ${location.pathname.includes(subItem.toLowerCase())
+                        ? 'text-blue-600 font-medium'
                         : 'text-gray-600 hover:bg-gray-50'}`}
                   >
                     {subItem}

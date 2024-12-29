@@ -1,12 +1,74 @@
 import React, {useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
-import { Bell, MessageSquare, ChevronLeft, X, Check } from 'lucide-react';
+import { Bell, MessageSquare, ChevronLeft, X, Check, FileText, Edit2, Trash2, ChevronUp } from 'lucide-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes , faHome, faBuilding, faSpinner, faCheck } from '@fortawesome/free-solid-svg-icons';
 import Image1 from '../Images/Image.png'
 import Misc from '../Images/Misc icon.png'
 import { useNavigate } from 'react-router-dom';
 
+const TermsAndAttachments = ({ isOpen, onToggle }) => {
+    return (
+      <div className="mt-8">
+        <div className="bg-white rounded-lg border border-gray-200">
+          {/* Header section */}
+          <button 
+            onClick={onToggle}
+            className="w-full p-4 flex items-center justify-between hover:bg-gray-50"
+          >
+            <div className="flex items-center gap-3">
+              <FileText className="text-gray-600" size={20} />
+              <div>
+                <div className="font-medium">Terms and Attachments</div>
+              </div>
+            </div>
+            <ChevronUp className={`transition-transform duration-200 ${!isOpen ? 'rotate-180' : ''}`} />
+          </button>
+  
+          {/* Expandable content */}
+          {isOpen && (
+            <div className="p-6 border-t border-gray-200">
+              <div className="bg-white rounded-lg border border-gray-200 p-6">
+                <div className="flex items-center justify-between mb-6">
+                  <h3 className="text-lg font-medium">Payment & Delivery</h3>
+                  <div className="flex gap-2">
+                    <button className="p-2 text-gray-400 hover:text-gray-600">
+                      <Edit2 size={18} />
+                    </button>
+                    <button className="p-2 text-gray-400 hover:text-gray-600">
+                      <Trash2 size={18} />
+                    </button>
+                  </div>
+                </div>
+  
+                <div className="grid grid-cols-4 gap-6">
+                  <div>
+                    <div className="text-sm text-gray-500 mb-1">Payment Term</div>
+                    <div className="font-medium">Net 30</div>
+                  </div>
+  
+                  <div>
+                    <div className="text-sm text-gray-500 mb-1">Delivery Schedule</div>
+                    <div className="font-medium">Immediate Delivery</div>
+                  </div>
+  
+                  <div>
+                    <div className="text-sm text-gray-500 mb-1">Shipping method</div>
+                    <div className="font-medium">Ground Shipping</div>
+                  </div>
+  
+                  <div>
+                    <div className="text-sm text-gray-500 mb-1">Lead time</div>
+                    <div className="font-medium">30 days</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+    );
+  };
 
 const LoadingModal = ({ isOpen }) => {
     if (!isOpen) return null;
@@ -102,6 +164,7 @@ const LoadingModal = ({ isOpen }) => {
   };
 
 const RFQReview = () => {
+    const [isTermsOpen, setIsTermsOpen] = useState(true);
     const navigate = useNavigate();
     const [showConfirmation, setShowConfirmation] = useState(false);
     const [showLoading, setShowLoading] = useState(false);
@@ -350,23 +413,16 @@ const RFQReview = () => {
                   </div>
         
                   {/* Terms and Attachments */}
-                  <div className="mt-8">
-                    <button className="w-full text-left p-4 bg-gray-50 rounded-lg flex items-center justify-between">
-                      <div className="flex items-center">
-                        <div className="mr-4">📎</div>
-                        <div>
-                          <div className="font-semibold">Terms and Attachments</div>
-                          <div className="text-sm text-gray-500">Review payment and delivery terms</div>
-                        </div>
-                      </div>
-                      <ChevronLeft className="transform rotate-270" />
-                    </button>
-                  </div>
+                  <TermsAndAttachments 
+                isOpen={isTermsOpen}
+                onToggle={() => setIsTermsOpen(!isTermsOpen)}
+                />
 
          {/* Action buttons */}
+         
       <div className="px-6 py-4 bg-gray-50 border-t rounded-b-lg flex justify-end space-x-4">
         <button 
-          onClick={() => navigate('/quotes')}
+          onClick={() => navigate('/procurement/quotes')}
           className="px-4 py-2 text-gray-600 hover:text-gray-800"
         >
           Cancel
