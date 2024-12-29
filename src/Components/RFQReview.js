@@ -1,12 +1,112 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
-import { Bell, MessageSquare, ChevronLeft } from 'lucide-react';
+import { Bell, MessageSquare, ChevronLeft, X, Check } from 'lucide-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTimes , faHome, faBuilding } from '@fortawesome/free-solid-svg-icons';
+import { faTimes , faHome, faBuilding, faSpinner, faCheck } from '@fortawesome/free-solid-svg-icons';
 import Image1 from '../Images/Image.png'
 import Misc from '../Images/Misc icon.png'
+import { useNavigate } from 'react-router-dom';
+
+
+const LoadingModal = ({ isOpen }) => {
+    if (!isOpen) return null;
+  
+    return (
+      <>
+        <div className="fixed inset-0 bg-black bg-opacity-50 z-40"></div>
+        <div className="fixed inset-0 flex items-center justify-center z-50">
+          <div className="bg-white rounded-lg p-6 w-96 flex flex-col items-center">
+            <FontAwesomeIcon 
+              icon={faSpinner} 
+              className="text-blue-600 text-3xl mb-4 animate-spin"
+            />
+            <p className="text-lg font-medium">Sending Quote...</p>
+          </div>
+        </div>
+      </>
+    );
+  };
+  
+  const ConfirmationModal = ({ isOpen, onCancel, onConfirm }) => {
+    if (!isOpen) return null;
+  
+    return (
+      <>
+        <div className="fixed inset-0 bg-black bg-opacity-50 z-40"></div>
+        <div className="fixed inset-0 flex items-center justify-center z-50">
+          <div className="bg-white rounded-lg p-6 w-[480px]">
+            <div className="flex justify-between items-start mb-4">
+              <h2 className="text-xl font-semibold">Confirmation</h2>
+              <button onClick={onCancel} className="text-gray-400 hover:text-gray-600">
+                <FontAwesomeIcon icon={faTimes} />
+              </button>
+            </div>
+            <p className="text-gray-600 mb-6">
+              You are about to submit this quote in response to RFQ #RQ 01234, this will immediately be 
+              sent to the client "Westend Clear Hospital". Are you sure you want to proceed?
+            </p>
+            <div className="flex justify-end space-x-4">
+              <button
+                onClick={onCancel}
+                className="px-4 py-2 text-gray-600 hover:text-gray-800"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={onConfirm}
+                className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+              >
+                Continue
+              </button>
+            </div>
+          </div>
+        </div>
+      </>
+    );
+  };
+  
+  const ToastNotification = ({ isOpen, onClose }) => {
+    const [isExiting, setIsExiting] = useState(false);
+  
+    useEffect(() => {
+      if (!isOpen) {
+        setIsExiting(false);
+      }
+    }, [isOpen]);
+  
+    const handleClose = () => {
+      setIsExiting(true);
+      setTimeout(() => {
+        setIsExiting(false);
+        onClose();
+      }, 200);
+    };
+  
+    if (!isOpen && !isExiting) return null;
+  
+    return (
+      <div className={`toast-notification ${isExiting ? 'slide-out' : 'slide-in'}`}>
+        <div className="toast-content">
+          <div className="toast-left">
+            <div className="check-icon-container">
+              <Check className="check-icon" />
+            </div>
+            <span className="toast-message">RFQ ID sent successfully!</span>
+          </div>
+          <button className="close-button" onClick={handleClose}>
+            <X size={16} />
+          </button>
+        </div>
+      </div>
+    );
+  };
 
 const RFQReview = () => {
+    const navigate = useNavigate();
+    const [showConfirmation, setShowConfirmation] = useState(false);
+    const [showLoading, setShowLoading] = useState(false);
+    const [showSuccess, setShowSuccess] = useState(false);
+
     const quoteData = {
         created: "Wed, 12th June 2022, 08:00am",
         title: "Request for Equipments",
@@ -72,6 +172,34 @@ const RFQReview = () => {
 
   const handleContinue = () => {
     setCurrentStep(prev => prev + 1);
+  };
+  const handleSubmitClick = () => {
+    setShowConfirmation(true);
+  };
+
+  const handleCancelConfirmation = () => {
+    setShowConfirmation(false);
+  };
+
+  const handleConfirmSubmit = async () => {
+    setShowConfirmation(false);
+    setShowLoading(true);
+
+    try {
+      // Simulate API call to submit quote
+      await new Promise(resolve => setTimeout(resolve, 2000));
+      
+      setShowLoading(false);
+      setShowSuccess(true);
+    } catch (error) {
+      setShowLoading(false);
+      // Handle error case
+    }
+  };
+
+  const handleSuccessClose = () => {
+    setShowSuccess(false);
+    navigate('/quotes');
   };
   return (
     <div className="ml-[350px] min-h-screen ">
@@ -235,19 +363,39 @@ const RFQReview = () => {
                     </button>
                   </div>
 
-        {/* Action Buttons */}
-        <div className="px-6 py-4 bg-gray-50 border-t rounded-b-lg flex justify-end space-x-4">
-          <button className="px-4 py-2 text-gray-600 hover:text-gray-800">
-            Cancel
-          </button>
-          <button className="px-4 py-2 text-blue-600 hover:text-blue-800 border border-blue-600 rounded">
-            Save as draft
-          </button>
-          <button className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
-            Submit
-          </button>
-        </div>
+         {/* Action buttons */}
+      <div className="px-6 py-4 bg-gray-50 border-t rounded-b-lg flex justify-end space-x-4">
+        <button 
+          onClick={() => navigate('/quotes')}
+          className="px-4 py-2 text-gray-600 hover:text-gray-800"
+        >
+          Cancel
+        </button>
+        <button 
+          onClick={() => navigate('/quotes/draft')}
+          className="px-4 py-2 text-blue-600 hover:text-blue-800 border border-blue-600 rounded"
+        >
+          Save as draft
+        </button>
+        <button 
+          onClick={handleSubmitClick}
+          className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+        >
+          Submit
+        </button>
       </div>
+      </div>
+      {/* Modals */}
+      <ConfirmationModal
+        isOpen={showConfirmation}
+        onCancel={handleCancelConfirmation}
+        onConfirm={handleConfirmSubmit}
+      />
+      <LoadingModal isOpen={showLoading} />
+      <ToastNotification
+        isOpen={showSuccess}
+        onClose={handleSuccessClose}
+      />
     </div>
   );
 };

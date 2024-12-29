@@ -1,0 +1,89 @@
+.toast-notification {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    z-index: 1000;
+  }
+  
+  .toast-content {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    border-left: 4px solid #22c55e;  /* Green border */
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-width: 320px;
+  }
+  
+  .toast-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  
+  .check-icon-container {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #dcfce7;  /* Light green background */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .check-icon {
+    color: #16a34a;  /* Green color for check icon */
+    width: 14px;
+    height: 14px;
+  }
+  
+  .toast-message {
+    font-size: 14px;
+    font-weight: 500;
+    color: #111827;
+  }
+  
+  .close-button {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    color: #9ca3af;
+  }
+  
+  .close-button:hover {
+    color: #4b5563;
+  }
+  
+  /* Animations */
+  @keyframes slideIn {
+    from {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  
+  @keyframes slideOut {
+    from {
+      transform: translateX(0);
+      opacity: 1;
+    }
+    to {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+  }
+  
+  .slide-in {
+    animation: slideIn 0.2s ease-out forwards;
+  }
+  
+  .slide-out {
+    animation: slideOut 0.2s ease-in forwards;
+  }

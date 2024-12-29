@@ -40,59 +40,58 @@ const QuoteResponse = () => {
   };
 
   return (
-    <div className="ml-[350px] min-h-screen ">
-    {/* Header */}
-    <div className="bg-white p-4 flex items-center justify-between shadow">
-      <div className="flex items-center">
-        <ChevronLeft className="text-gray-500" />
-        <span className="ml-2">Back</span>
-      </div>
-      <div className="flex items-center">
-        <input
-          type="search"
-          placeholder="Search here..."
-          className="px-4 py-2 border rounded-lg mr-4"
-        />
-        <Bell className="text-gray-500 mr-4" />
-        <MessageSquare className="text-gray-500 mr-4" />
-        <img src={Image1} alt="User" className="w-8 h-8 rounded-full" />
-      </div>
-    </div> 
-      {/* Progress Steps */}
-      <div className="px-6 py-4">
-        <div className="flex items-center space-x-4">
-          <span className="text-blue-600">Quotes</span>
-          <ChevronLeft className="transform rotate-270 text-gray-400" />
-          <span>Quote Response</span>
-        </div>
-
-        <div className="flex items-center mt-6 space-x-4">
-          {steps.map((step, index) => (
-            <React.Fragment key={step.number}>
-              <div className="flex items-center">
-                <div className={`w-8 h-8 rounded-full flex items-center justify-center ${
-                  step.number === currentStep 
-                    ? 'bg-green-500 text-white'
-                    : step.number < currentStep
-                    ? 'bg-blue-500 text-white'
-                    : 'bg-blue-500 text-white'
-                }`}>
-                  {step.number}
-                </div>
-                <div className="ml-3">
-                  <div className="font-medium">{step.title}</div>
-                  <div className="text-sm text-gray-500">{step.description}</div>
-                </div>
-              </div>
-              {index < steps.length - 2 && (
-                <div className={`h-1 w-24 ${
-                  step.number < currentStep ? 'bg-green-500' : 'bg-gray-200'
-                }`} />
-              )}
-            </React.Fragment>
-          ))}
-        </div>
-      </div>
+     <div className="ml-[350px] min-h-screen ">
+        {/* Header */}
+        <div className="bg-white p-4 flex items-center justify-between shadow">
+          <div className="flex items-center">
+            <ChevronLeft className="text-gray-500" />
+            <span className="ml-2">Back</span>
+          </div>
+          <div className="flex items-center">
+            <input
+              type="search"
+              placeholder="Search here..."
+              className="px-4 py-2 border rounded-lg mr-4"
+            />
+            <Bell className="text-gray-500 mr-4" />
+            <MessageSquare className="text-gray-500 mr-4" />
+            <img src={Image1} alt="User" className="w-8 h-8 rounded-full" />
+          </div>
+        </div> 
+          <div className="mb-8">
+            <div className="flex items-center space-x-2 text-sm text-gray-600 mt-3  ml-6">
+              <Link to="/procurement/quotes" className=' text-blue-600 '>Quotes</Link>
+              <span>/</span>
+              <span>Quote Response</span>
+            </div>
+          </div>
+    
+          <div className="flex items-center mt-6 space-x-8 mb-6 border rounded-lg p-4 ml-6">
+                    {steps.map((step, index) => (
+                      <React.Fragment key={step.number}>
+                        <div className="flex items-center">
+                          <div className={`w-8 h-8 rounded-full flex items-center justify-center ${
+                            step.number === currentStep 
+                              ? 'bg-blue-600 text-white'
+                              : step.number < currentStep
+                              ? 'bg-green-500 text-white'
+                              : 'bg-gray-200 text-gray-500'
+                          }`}>
+                            {step.number}
+                          </div>
+                          <div className="ml-3">
+                            <div className="font-medium">{step.title}</div>
+                            <div className="text-sm text-gray-500">{step.description}</div>
+                          </div>
+                        </div>
+                        {index < steps.length - 1 && (
+                          <div className={`h-1 w-24 ${
+                            step.number < currentStep ? 'bg-green-500' : 'bg-gray-200'
+                          }`} />
+                        )}
+                      </React.Fragment>
+                    ))}
+                  </div>
 
       {/* Form Content */}
       <div className="p-6">
