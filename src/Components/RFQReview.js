@@ -194,7 +194,7 @@ const RFQReview = () => {
         items: [
           {
             id: "28373",
-            name: "Oxygen concentrator",
+            name: "Oxygen concentra...",
             variant: "Blue",
             quantity: "100 pieces",
             price: "$200.00",
@@ -203,7 +203,7 @@ const RFQReview = () => {
           },
           {
             id: "28373",
-            name: "Mechanical ventilator",
+            name: "Mechanical ventila...",
             variant: "NIL",
             quantity: "45 Kg",
             price: "$350.00",
@@ -221,7 +221,7 @@ const RFQReview = () => {
           },
           {
             id: "28373",
-            name: "Mechanical ventilator",
+            name: "Mechanical ventila...",
             variant: "Blue",
             quantity: "35 Units",
             price: "$200.00",

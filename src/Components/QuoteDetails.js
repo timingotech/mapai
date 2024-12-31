@@ -98,7 +98,7 @@ const QuoteDetails = () =>
     items: [
       {
         id: "28373",
-        name: "Oxygen concentrator",
+        name: "Oxygen concentra...",
         variant: "Blue",
         quantity: "100 pieces",
         price: "$200.00",
@@ -107,7 +107,7 @@ const QuoteDetails = () =>
       },
       {
         id: "28373",
-        name: "Mechanical ventilator",
+        name: "Mechanical ventila...",
         variant: "NIL",
         quantity: "45 Kg",
         price: "$350.00",
@@ -125,7 +125,7 @@ const QuoteDetails = () =>
       },
       {
         id: "28373",
-        name: "Mechanical ventilator",
+        name: "Mechanical ventila...",
         variant: "Blue",
         quantity: "35 Units",
         price: "$200.00",
@@ -174,8 +174,8 @@ const QuoteDetails = () =>
       </div>
 
       {/* Content */}
-      <div className="p-6">
-        <div className="flex justify-between items-center mb-6">
+      <div className="">
+        <div className="flex justify-between items-center mb-6 mx-6">
             <div>
             <h1 className="text-xl font-semibold">Quote details</h1>
             <div className="text-sm text-gray-500">Created on {quoteData.created}</div>
@@ -193,7 +193,7 @@ const QuoteDetails = () =>
           </div>
           
         </div>
-
+        {/* Quote Information */}
         <div className="bg-white rounded-lg  p-6">
           <div className="flex justify-between mb-8  p-6 rounded-lg border ">
             <div className="space-y-6">
@@ -291,13 +291,13 @@ const QuoteDetails = () =>
               </tbody>
             </table>
 
-            <div className="flex justify-end mt-6 space-x-8">
-              <div>
-                <div className="text-md text-[#475367] font-normal">Sub Total</div>
-                <div className="text-md text-[#475367] font-normal">$8,000.00</div>
+            <div className="flex justify-end mt-6 space-x-[70px] mr-[168px]">
+              <div className=' ml-[-200px]'>
+                <div className="text-md text-[#475367] font-normal ">Sub Total</div>
+                <div className="text-md text-[#475367] font-normal">Total</div>
               </div>
               <div>
-                <div className="text-md text-[#475367] font-normal">Total</div>
+                <div className="text-md text-[#475367] font-normal ">$8,000.00</div>
                 <div className="text-md text-[#475367] font-bold">$8,750.00</div>
               </div>
             </div>
