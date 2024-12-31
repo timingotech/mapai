@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
 import { MessageSquare, ChevronLeft,  Edit2, Trash2, ChevronUp, FileText, ChevronDown } from 'lucide-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTimes , faPenToSquare } from '@fortawesome/free-solid-svg-icons';
+import { faTimes , faPenToSquare, faPipe } from '@fortawesome/free-solid-svg-icons';
 import Image1 from '../Images/Image.png'
 import Misc from '../Images/Misc icon.png'
 import Search from '../Images/SearchIcon.png'
@@ -11,7 +11,7 @@ import Message from '../Images/TopRightChat.png'
 import Building from '../Images/Building-5.png'
 import Signdoc from '../Images/Sign-doc.png'
 import DeleteIcon from '../Images/DeleteIcon.png'
-
+import Line from '../Images/Vector53.png'
 const TermsAndAttachments = ({ isOpen, onToggle }) => {
   return (
     <div className="mt-8">
@@ -47,23 +47,22 @@ const TermsAndAttachments = ({ isOpen, onToggle }) => {
                 </div>
               </div>
 
-              <div className="grid grid-cols-4 gap-6">
+              <div className="flex items-center  mb-6 space-x-[150px]">
                 <div>
                   <div className="text-sm text-gray-500 mb-1">Payment Term</div>
                   <div className="font-medium">Net 30</div>
                 </div>
-
-                <div>
+                <div className='border-l-2 pl-4'>
                   <div className="text-sm text-gray-500 mb-1">Delivery Schedule</div>
                   <div className="font-medium">Immediate Delivery</div>
                 </div>
 
-                <div>
-                  <div className="text-sm text-gray-500 mb-1">Shipping method</div>
+                <div className='border-l-2 pl-4'>
+                  <div className="text-sm text-gray-500 mb-1 ">Shipping method</div>
                   <div className="font-medium">Ground Shipping</div>
                 </div>
 
-                <div>
+                <div className='border-l-2 pl-4 '>
                   <div className="text-sm text-gray-500 mb-1">Lead time</div>
                   <div className="font-medium">30 days</div>
                 </div>
