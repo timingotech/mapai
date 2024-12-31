@@ -181,7 +181,7 @@ const QuoteDetails = () =>
             <div className="text-sm text-gray-500">Created on {quoteData.created}</div>
             </div>
             <div className="mt-8 flex justify-end space-x-4">
-            <Link to='/quote-response1'>
+            <Link to='/procurement/quotes/quote-response1'>
             <button className="px-6 py-2 bg-[#175CFF] text-white rounded-lg">
                 Respond
             </button>

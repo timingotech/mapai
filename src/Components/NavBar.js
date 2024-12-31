@@ -24,7 +24,7 @@ const Navbar = () => {
   const location = useLocation();
 
   // State to manage which menu is open
-  const [openMenu, setOpenMenu] = useState(null);
+  const [openMenu, setOpenMenu] = useState('/procurement');
 
   const navItems = [
     { path: '/dashboard', icon: <img src={DashboardIcon} size={20} />, name: 'Dashboard' },

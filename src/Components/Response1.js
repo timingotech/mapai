@@ -255,7 +255,7 @@ const Response1 = () => {
             Save as draft
           </button>
           <Link
-            to="/quote-response"
+            to="/procurement/quotes/quote-response"
             className="px-8 py-3 bg-[#175CFF] text-white rounded-md font-bold"
           >
             Continue
