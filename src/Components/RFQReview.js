@@ -16,7 +16,7 @@ import SpinnerBar from '../Images/SpinnerBar.png'
 
 const TermsAndAttachments = ({ isOpen, onToggle }) => {
   return (
-    <div className="mt-8 mx-6">
+    <div className="mt-8">
       <div className="bg-white rounded-lg border border-gray-200">
         {/* Header section */}
         <button 
@@ -49,23 +49,22 @@ const TermsAndAttachments = ({ isOpen, onToggle }) => {
                 </div>
               </div>
 
-              <div className="grid grid-cols-4 gap-6">
+              <div className="flex items-center  mb-6 space-x-[150px]">
                 <div>
                   <div className="text-sm text-gray-500 mb-1">Payment Term</div>
                   <div className="font-medium">Net 30</div>
                 </div>
-
-                <div>
+                <div className='border-l-2 pl-4'>
                   <div className="text-sm text-gray-500 mb-1">Delivery Schedule</div>
                   <div className="font-medium">Immediate Delivery</div>
                 </div>
 
-                <div>
-                  <div className="text-sm text-gray-500 mb-1">Shipping method</div>
+                <div className='border-l-2 pl-4'>
+                  <div className="text-sm text-gray-500 mb-1 ">Shipping method</div>
                   <div className="font-medium">Ground Shipping</div>
                 </div>
 
-                <div>
+                <div className='border-l-2 pl-4 '>
                   <div className="text-sm text-gray-500 mb-1">Lead time</div>
                   <div className="font-medium">30 days</div>
                 </div>

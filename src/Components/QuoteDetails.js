@@ -12,6 +12,7 @@ import Building from '../Images/Building-5.png'
 import Signdoc from '../Images/Sign-doc.png'
 import DeleteIcon from '../Images/DeleteIcon.png'
 import Line from '../Images/Vector53.png'
+
 const TermsAndAttachments = ({ isOpen, onToggle }) => {
   return (
     <div className="mt-8">
