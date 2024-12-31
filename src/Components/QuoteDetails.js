@@ -146,7 +146,7 @@ const QuoteDetails = () =>
     setCurrentStep(prev => prev + 1);
   };
 
-  const [isTermsOpen, setIsTermsOpen] = useState(true);
+  const [isTermsOpen, setIsTermsOpen] = useState(false);
 
   return (
     <div className="ml-[350px] min-h-screen ">

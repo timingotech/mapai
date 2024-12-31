@@ -96,11 +96,11 @@ const Response1 = () => {
         </div>
       </div>
 
-      <div className="flex items-center mt-6 space-x-8 mb-6 border rounded-lg p-4 mx-6">
+      <div className="flex items-center mt-6 space-x-[200px] mb-6 border rounded-lg p-4 mx-6">
                 {steps.map((step, index) => (
                   <React.Fragment key={step.number}>
-                    <div className="flex items-center">
-                      <div className={`w-8 h-8 rounded-full flex items-center justify-center ${
+                    <div className="flex items-center ">
+                      <div className={`w-8 h-8 rounded-full flex items-center justify-center  ${
                         step.number === currentStep 
                           ? 'bg-blue-600 text-white bold'
                           : step.number < currentStep
@@ -109,16 +109,11 @@ const Response1 = () => {
                       }`}>
                         {step.number}
                       </div>
-                      <div className="ml-3">
+                      <div className="ml-3 ">
                         <div className="font-medium">{step.title}</div>
                         <div className="text-sm text-gray-500">{step.description}</div>
                       </div>
                     </div>
-                    {index < steps.length - 1 && (
-                      <div className={`h-1 w-24 ${
-                        step.number < currentStep ? 'bg-green-500' : 'bg-gray-200'
-                      }`} />
-                    )}
                   </React.Fragment>
                 ))}
               </div>

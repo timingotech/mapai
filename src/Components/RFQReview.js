@@ -169,7 +169,7 @@ const LoadingModal = ({ isOpen }) => {
   };
 
 const RFQReview = () => {
-    const [isTermsOpen, setIsTermsOpen] = useState(true);
+    const [isTermsOpen, setIsTermsOpen] = useState(false);
     const navigate = useNavigate();
     const [showConfirmation, setShowConfirmation] = useState(false);
     const [showLoading, setShowLoading] = useState(false);
@@ -301,7 +301,7 @@ const RFQReview = () => {
               </div>
             </div>
       
-            <div className="flex items-center mt-6 space-x-8 mb-6 border rounded-lg p-4 mx-6">
+            <div className="flex items-center mt-6 space-x-[200px] mb-6 border rounded-lg p-4 mx-6">
                       {steps.map((step, index) => (
                         <React.Fragment key={step.number}>
                           <div className="flex items-center">
@@ -319,11 +319,7 @@ const RFQReview = () => {
                               <div className="text-sm text-gray-500">{step.description}</div>
                             </div>
                           </div>
-                          {index < steps.length - 1 && (
-                            <div className={`h-1 w-24 ${
-                              step.number < currentStep ? 'bg-green-500' : 'bg-gray-200'
-                            }`} />
-                          )}
+                          
                         </React.Fragment>
                       ))}
                     </div>
