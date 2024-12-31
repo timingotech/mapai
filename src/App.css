@@ -9,7 +9,7 @@
     background: white;
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-    border-left: 4px solid #22c55e;  /* Green border */
+    border-left: 4px solid #04802E;  /* Green border */
     padding: 16px;
     display: flex;
     align-items: center;
@@ -32,12 +32,7 @@
     align-items: center;
     justify-content: center;
   }
-  
-  .check-icon {
-    color: #16a34a;  /* Green color for check icon */
-    width: 14px;
-    height: 14px;
-  }
+
   
   .toast-message {
     font-size: 14px;

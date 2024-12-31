@@ -1,74 +1,82 @@
 import React, {useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
-import { Bell, MessageSquare, ChevronLeft, X, Check, FileText, Edit2, Trash2, ChevronUp, ChevronDown } from 'lucide-react';
+import { MessageSquare, ChevronLeft, X, Check, FileText, Edit2, Trash2, ChevronUp, ChevronDown } from 'lucide-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes , faHome, faBuilding, faSpinner, faComments,faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 import Image1 from '../Images/Image.png'
 import Misc from '../Images/Misc icon.png'
 import { useNavigate } from 'react-router-dom';
+import Search from '../Images/SearchIcon.png'
+import Bell from '../Images/Bell.png'
+import Message from '../Images/TopRightChat.png'
+import Signdoc from '../Images/Sign-doc.png'
+import DeleteIcon from '../Images/DeleteIcon.png'
+import CheckIcon from '../Images/CheckIcon.png'
+import SpinnerBar from '../Images/SpinnerBar.png'
 
 const TermsAndAttachments = ({ isOpen, onToggle }) => {
-    return (
-      <div className="mt-8">
-        <div className="bg-white rounded-lg border border-gray-200">
-          {/* Header section */}
-          <button 
-            onClick={onToggle}
-            className="w-full p-4 flex items-center justify-between hover:bg-gray-50"
-          >
-            <div className="flex items-center gap-3">
-              <FileText className="text-gray-600" size={20} />
-              <div>
-                <div className="font-medium">Terms and Attachments</div>
-              </div>
+  return (
+    <div className="mt-8 mx-6">
+      <div className="bg-white rounded-lg border border-gray-200">
+        {/* Header section */}
+        <button 
+          onClick={onToggle}
+          className="w-full p-4 flex items-center justify-between hover:bg-gray-50"
+        >
+          <div className="flex items-center gap-3">
+            <img src={Signdoc} className="text-gray-600" size={20} />
+            <div className='block'>
+              <div className="font-bold text-[#1D2739] text-left text-xl">Terms and Attachments</div>
+              <p className='font-normal text-[#475367] text-left text-sm'>Review payment and delivery terms</p>
             </div>
-            <ChevronUp className={`transition-transform duration-200 ${!isOpen ? 'rotate-180' : ''}`} />
-          </button>
-  
-          {/* Expandable content */}
-          {isOpen && (
-            <div className="p-6 border-t border-gray-200">
-              <div className="bg-white rounded-lg border border-gray-200 p-6">
-                <div className="flex items-center justify-between mb-6">
-                  <h3 className="text-lg font-medium">Payment & Delivery</h3>
-                  <div className="flex gap-2">
-                    <button className="p-2 text-gray-400 hover:text-gray-600">
-                      <Edit2 size={18} />
-                    </button>
-                    <button className="p-2 text-gray-400 hover:text-gray-600">
-                      <Trash2 size={18} />
-                    </button>
-                  </div>
-                </div>
-  
-                <div className="grid grid-cols-4 gap-6">
-                  <div>
-                    <div className="text-sm text-gray-500 mb-1">Payment Term</div>
-                    <div className="font-medium">Net 30</div>
-                  </div>
-  
-                  <div>
-                    <div className="text-sm text-gray-500 mb-1">Delivery Schedule</div>
-                    <div className="font-medium">Immediate Delivery</div>
-                  </div>
-  
-                  <div>
-                    <div className="text-sm text-gray-500 mb-1">Shipping method</div>
-                    <div className="font-medium">Ground Shipping</div>
-                  </div>
-  
-                  <div>
-                    <div className="text-sm text-gray-500 mb-1">Lead time</div>
-                    <div className="font-medium">30 days</div>
-                  </div>
+          </div>
+          <ChevronUp className={`transition-transform duration-200 text-[#98A2B3] ${!isOpen ? 'rotate-180' : ''}`} />
+        </button>
+
+        {/* Expandable content */}
+        {isOpen && (
+          <div className="p-6 border-t border-gray-200">
+            <div className="bg-white rounded-lg border border-gray-200 p-6">
+              <div className="flex items-center justify-between mb-6">
+                <h3 className="text-lg font-medium">Payment & Delivery</h3>
+                <div className="flex gap-2">
+                  <button className="p-2 text-gray-400 ">
+                  <FontAwesomeIcon icon={faPenToSquare} className='text-lg text-[#98A2B3]' />
+                  </button>
+                  <button className="p-2 text-gray-400 hover:text-gray-600">
+                    <img src={DeleteIcon} size={18} />
+                  </button>
                 </div>
               </div>
+
+              <div className="grid grid-cols-4 gap-6">
+                <div>
+                  <div className="text-sm text-gray-500 mb-1">Payment Term</div>
+                  <div className="font-medium">Net 30</div>
+                </div>
+
+                <div>
+                  <div className="text-sm text-gray-500 mb-1">Delivery Schedule</div>
+                  <div className="font-medium">Immediate Delivery</div>
+                </div>
+
+                <div>
+                  <div className="text-sm text-gray-500 mb-1">Shipping method</div>
+                  <div className="font-medium">Ground Shipping</div>
+                </div>
+
+                <div>
+                  <div className="text-sm text-gray-500 mb-1">Lead time</div>
+                  <div className="font-medium">30 days</div>
+                </div>
+              </div>
             </div>
-          )}
-        </div>
+          </div>
+        )}
       </div>
-    );
-  };
+    </div>
+  );
+};
 
 const LoadingModal = ({ isOpen }) => {
     if (!isOpen) return null;
@@ -78,8 +86,8 @@ const LoadingModal = ({ isOpen }) => {
         <div className="fixed inset-0 bg-black bg-opacity-50 z-40"></div>
         <div className="fixed inset-0 flex items-center justify-center z-50">
           <div className="bg-white rounded-lg p-6 w-96 flex flex-col items-center">
-            <FontAwesomeIcon 
-              icon={faSpinner} 
+            <img 
+              src={SpinnerBar} 
               className="text-blue-600 text-3xl mb-4 animate-spin"
             />
             <p className="text-lg font-medium">Sending Quote...</p>
@@ -96,27 +104,24 @@ const LoadingModal = ({ isOpen }) => {
       <>
         <div className="fixed inset-0 bg-black bg-opacity-50 z-40"></div>
         <div className="fixed inset-0 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg p-6 w-[480px]">
+          <div className="bg-white rounded-lg p-6 w-[600px]">
             <div className="flex justify-between items-start mb-4">
               <h2 className="text-xl font-semibold">Confirmation</h2>
-              <button onClick={onCancel} className="text-gray-400 hover:text-gray-600">
-                <FontAwesomeIcon icon={faTimes} />
-              </button>
+              
             </div>
-            <p className="text-gray-600 mb-6">
-              You are about to submit this quote in response to RFQ #RQ 01234, this will immediately be 
-              sent to the client "Westend Clear Hospital". Are you sure you want to proceed?
+            <p className="text-[#475367] font-medium text-sm mb-6">
+            You are about to submit this quote in response to RFQ ID, this will immediately be sent to the client “Westend Clear Hospital”. Are you sure you want to proceed?
             </p>
             <div className="flex justify-end space-x-4">
               <button
                 onClick={onCancel}
-                className="px-4 py-2 text-gray-600 hover:text-gray-800"
+                className="px-4 py-2 text-[#344054] border rounded-md font-bold"
               >
                 Cancel
               </button>
               <button
                 onClick={onConfirm}
-                className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+                className="px-4 py-2 bg-[#175CFF] text-white rounded  font-bold"
               >
                 Continue
               </button>
@@ -151,9 +156,9 @@ const LoadingModal = ({ isOpen }) => {
         <div className="toast-content">
           <div className="toast-left">
             <div className="check-icon-container">
-              <Check className="check-icon" />
+              <img src={CheckIcon} className="check-icon" />
             </div>
-            <span className="toast-message">RFQ ID sent successfully!</span>
+            <span className="toast-message font-bold text-[#101928]">RFQ ID sent successfully!</span>
           </div>
           <button className="close-button" onClick={handleClose}>
             <X size={16} />
@@ -268,38 +273,43 @@ const RFQReview = () => {
     <div className="ml-[350px] min-h-screen ">
     {/* Header */}
     <div className="bg-white p-4 flex items-center justify-between shadow">
-      <div className="flex items-center">
-        <ChevronLeft className="text-gray-500" />
-        <span className="ml-2">Back</span>
-      </div>
-      <div className="flex items-center">
-        <input
-          type="search"
-          placeholder="Search here..."
-          className="px-4 py-2 border rounded-lg mr-4"
-        />
-        <Bell className="text-gray-500 mr-4" />
-        <FontAwesomeIcon className="text-gray-500 mr-4 text-xl"  icon={faComments} />
-        <img src={Image1} alt="User" className="w-8 h-8 rounded-full" />
-      </div>
-    </div>
+                        <div className="flex items-center">
+                          <ChevronLeft className="text-[#667185]" />
+                          <span className="ml-2 text-[#667185]">Back</span>
+                        </div>
+                        <div className="flex items-center">
+                          <div className='flex items-center border rounded-lg px-2 py-2  mr-4 space-x-1'>
+                          <img src={Search} className="text-[#667185]" />
+                          <input
+                            type="search"
+                            placeholder="Search here..."
+                            className=""
+                          />
+                          </div>
+                          
+                          <img src={Bell} className="text-gray-500 mr-4" />
+                          <img src={Message} className="text-gray-500 mr-4 text-xl"   />
+                          <img src={Image1} alt="User" className="w-8 h-8 rounded-full" />
+                          <ChevronDown className='text-gray-500 mr-4'/>
+                        </div>
+                      </div>
        <div className="mb-8">
-              <div className="flex items-center space-x-2 text-sm text-gray-600 mt-3  ml-6">
+              <div className="flex items-center space-x-2 text-sm text-gray-600 mt-3  mx-6">
                 <Link to="/procurement/quotes" className=' text-blue-600 '>Quotes</Link>
                 <span>/</span>
-                <span>Quote Response</span>
+                <span>Request for Quote</span>
               </div>
             </div>
       
-            <div className="flex items-center mt-6 space-x-8 mb-6 border rounded-lg p-4 ml-6">
+            <div className="flex items-center mt-6 space-x-8 mb-6 border rounded-lg p-4 mx-6">
                       {steps.map((step, index) => (
                         <React.Fragment key={step.number}>
                           <div className="flex items-center">
                             <div className={`w-8 h-8 rounded-full flex items-center justify-center ${
                               step.number === currentStep 
-                                ? 'bg-blue-600 text-white'
+                                ? 'bg-[#175CFF] text-white font-bold'
                                 : step.number < currentStep
-                                ? 'bg-green-500 text-white'
+                                ? 'bg-[#E7F6EC] text-[#0F973D] font-bold'
                                 : 'bg-gray-200 text-gray-500'
                             }`}>
                               {step.number}
@@ -319,41 +329,41 @@ const RFQReview = () => {
                     </div>
 
       {/* Main Content */}
-      <div className="bg-white rounded-lg shadow">
+      <div className="bg-white ">
         {/* Request Information Section */}
-        <div className="flex justify-between mb-8 shadow p-6 rounded-lg">
+        <div className="flex justify-between mb-8 border rounded-lg p-4 mx-6">
                    <div className="space-y-6">
                     <div className='flex items-center justify-between'>
                     <h2 className="text-lg font-semibold ">Quote Information</h2> 
                     </div>
                      <div className=" space-y-4 ">
-                       <div className='flex space-x-[250px]'>
-                         <div className="text-sm text-gray-500">Title</div>
-                         <div>{quoteData.title}</div>
-                       </div>
-                       <div className='flex space-x-[230px]'>
-                         <div className="text-sm text-gray-500">RFQ No</div>
-                         <div>{quoteData.rfqNo}</div>
-                       </div>
-                       <div className='flex space-x-[215px]'>
-                         <div className="text-sm text-gray-500">Requestor</div>
-                         <div className="flex items-center">
-                           <span className="bg-[#FFECE5] text-black-500 rounded-full px-2 py-1 text-sm mr-2">
-                             {quoteData.requester.initials}
-                           </span>
-                           {quoteData.requester.name} 
-                           <span className='text-gray-400 ml-1'>• {quoteData.requester.role} </span>
-                         </div>
-                         
+                       <div className='flex space-x-[256px]'>
+                       <div className="text-md text-[#555E68] font-medium">Title</div>
+                  <div  className='text-md text-[#101928] font-medium '>{quoteData.title}</div>
+                </div>
+                <div className='flex space-x-[230px]'>
+                  <div className="text-md text-[#555E68] font-medium">RFQ No</div>
+                  <div  className='text-md text-[#101928] font-medium'>{quoteData.rfqNo}</div>
+                </div>
+                <div className='flex space-x-[220px]'>
+                  <div className="text-sm text-[#555E68] font-medium">Requestor</div>
+                  <div className="flex items-center text-[#344054]">
+                    <span className="bg-[#FFECE5] text-[#101928] font-bold rounded-full px-2 py-1 text-sm mr-2">
+                      {quoteData.requester.initials}  
+                    </span>
+
+                    {quoteData.requester.name} 
+                    <span className='text-[#98A2B3] font-medium ml-1'>• {quoteData.requester.role} </span>
+                  </div>   
                        </div>
                        
-                       <div className='flex space-x-[205px]'>
-                         <div className="text-sm text-gray-500">Department</div>
-                         <div>{quoteData.department}</div>
-                       </div>
-                       <div className="flex mb-2 space-x-[135px]">
-                       <div className='text-sm text-gray-500'>Expected delivery date: </div>
-                       <div>{quoteData.expectedDelivery}</div> 
+                  <div className='flex space-x-[200px]'>
+                  <div className="text-md text-[#555E68] font-medium">Department</div>
+                  <div className='text-md text-[#101928] font-medium' >{quoteData.department}</div>
+                </div>
+                       <div className="flex mb-2 space-x-[120px]">
+                       <div className='text-md text-[#555E68] font-medium'>Expected delivery date: </div>
+                       <div className='text-md text-[#101928] font-medium ml-[-10px]'>{quoteData.expectedDelivery}</div> 
                         </div>
                      </div>
                    </div>
@@ -361,21 +371,21 @@ const RFQReview = () => {
                  </div>
 
         {/* Items Table */}
-                  <div className='mb-8 shadow p-6 rounded-lg'>
+          <div className='mb-8 p-6  rounded-lg border mx-6'>
                     <h3 className="font-semibold mb-4">Item(s)</h3>
-                    <table className="w-full">
-                      <thead className="bg-gray-50">
-                        <tr>
-                          <th className="w-9 p-3">
-                            <input type="checkbox" className="rounded" />
-                          </th>
-                          <th className="text-left p-3">Items</th>
-                          <th className="text-left p-3">Variants</th>
-                          <th className="text-left p-3">Quantity</th>
-                          <th className="text-left p-3">Price</th>
-                          <th className="text-left p-3">Amount</th>
-                          <th className="text-left p-3">Expected Delivery Date</th>
-                        </tr>
+                    <table className="w-full p-1  rounded-lg border  ">
+                    <thead className="bg-gray-50">
+                      <tr>
+                  <th className="w-8 p-3">
+                    <input type="checkbox" className="rounded" />
+                  </th>
+                  <th className="text-left p-3 font-normal text-[#344054] ">Items</th>
+                  <th className="text-left p-3 font-normal text-[#344054]">Variants</th>
+                  <th className="text-left p-3 font-normal text-[#344054]">Quantity</th>
+                  <th className="text-left p-3 font-normal text-[#344054]">Price</th>
+                  <th className="text-left p-3 font-normal text-[#344054]">Amount</th>
+                  <th className="text-left p-3 font-normal text-[#344054]">Expected Delivery Date</th>
+                </tr>
                       </thead>
                       <tbody>
                         {quoteData.items.map((item, index) => (
@@ -387,29 +397,29 @@ const RFQReview = () => {
                               <div className="flex items-center">
                                 <img src={Misc} alt={item.name} className="w-10 h-10 rounded mr-2" />
                                 <div>
-                                  <div>{item.name}</div>
-                                  <div className="text-sm text-gray-500">#{item.id}</div>
-                                </div>
-                              </div>
-                            </td>
-                            <td className="p-3">{item.variant}</td>
-                            <td className="p-3">{item.quantity}</td>
-                            <td className="p-3">{item.price}</td>
-                            <td className="p-3">{item.amount}</td>
-                            <td className="p-3">{item.deliveryDate}</td>
-                          </tr>
+                          <div className='text-[#101928] font-medium'>{item.name}</div>
+                          <div className="text-sm font-normal text-[#475367]">#{item.id}</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td className="p-3 text-[#344054] font-normal">{item.variant}</td>
+                    <td className="p-3 text-[#344054] font-normal">{item.quantity}</td>
+                    <td className="p-3 text-[#344054] font-normal">{item.price}</td>
+                    <td className="p-3 text-[#344054] font-normal">{item.amount}</td>
+                    <td className="p-3 text-[#344054] font-normal">{item.deliveryDate}</td>
+                  </tr>
                         ))}
                       </tbody>
                     </table>
         
-                    <div className="flex justify-end mt-6 space-x-[70px] mr-[210px]">
+                    <div className="flex justify-end mt-6 space-x-[70px] mr-[180px]">
                       <div>
-                        <div className="text-sm text-gray-500">Sub Total</div>
-                        <div className="font-semibold">$8,000.00</div>
+                        <div className="text-md text-[#475367] font-normal">Sub Total</div>
+                        <div className="text-md text-[#475367] font-normal">Total</div>
                       </div>
                       <div>
-                        <div className="text-sm text-gray-500">Total</div>
-                        <div className="font-semibold">$8,750.00</div>
+                        <div className="text-md text-[#475367] font-normal">$8,000.00</div>
+                        <div className="text-md text-[#475367] font-bold">$8,750.00</div>
                       </div>
                     </div>
                   </div>
@@ -422,23 +432,23 @@ const RFQReview = () => {
 
          {/* Action buttons */}
          
-      <div className="px-6 py-4 bg-gray-50 border-t rounded-b-lg flex justify-end space-x-4">
-        <button 
+         <div className="flex justify-end space-x-4 my-6 mr-6">
+         <button 
           onClick={() => navigate('/procurement/quotes')}
-          className="px-4 py-2 text-gray-600 hover:text-gray-800"
-        >
+          className="px-4 py-3 text-gray-600 border border-gray-300 rounded-md font-bold"
+                  >
           Cancel
         </button>
         <button 
           onClick={() => navigate('/quotes/draft')}
-          className="px-4 py-2 text-blue-600 hover:text-blue-800 border border-blue-600 rounded"
+          className="px-8 py-3 text-[#175CFF] border-[#175CFF] border-2 rounded-md font-bold"
         >
           Save as draft
         </button>
         <button 
           onClick={handleSubmitClick}
-          className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
-        >
+          className="px-8 py-3 bg-[#175CFF] text-white rounded-md font-bold"
+          >
           Submit
         </button>
       </div>

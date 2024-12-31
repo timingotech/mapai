@@ -1,10 +1,16 @@
 import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
-import { Bell, MessageSquare, ChevronLeft,  Edit2, Trash2, ChevronUp, FileText, ChevronDown } from 'lucide-react';
+import { MessageSquare, ChevronLeft,  Edit2, Trash2, ChevronUp, FileText, ChevronDown } from 'lucide-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTimes , faComments, faBuilding } from '@fortawesome/free-solid-svg-icons';
+import { faTimes , faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 import Image1 from '../Images/Image.png'
 import Misc from '../Images/Misc icon.png'
+import Search from '../Images/SearchIcon.png'
+import Bell from '../Images/Bell.png'
+import Message from '../Images/TopRightChat.png'
+import Building from '../Images/Building-5.png'
+import Signdoc from '../Images/Sign-doc.png'
+import DeleteIcon from '../Images/DeleteIcon.png'
 
 const TermsAndAttachments = ({ isOpen, onToggle }) => {
   return (
@@ -16,12 +22,13 @@ const TermsAndAttachments = ({ isOpen, onToggle }) => {
           className="w-full p-4 flex items-center justify-between hover:bg-gray-50"
         >
           <div className="flex items-center gap-3">
-            <FileText className="text-gray-600" size={20} />
-            <div>
-              <div className="font-medium">Terms and Attachments</div>
+            <img src={Signdoc} className="text-gray-600" size={20} />
+            <div className='block'>
+              <div className="font-bold text-[#1D2739] text-left text-xl">Terms and Attachments</div>
+              <p className='font-normal text-[#475367] text-left text-sm'>Review payment and delivery terms</p>
             </div>
           </div>
-          <ChevronUp className={`transition-transform duration-200 ${!isOpen ? 'rotate-180' : ''}`} />
+          <ChevronUp className={`transition-transform duration-200 text-[#98A2B3] ${!isOpen ? 'rotate-180' : ''}`} />
         </button>
 
         {/* Expandable content */}
@@ -31,11 +38,11 @@ const TermsAndAttachments = ({ isOpen, onToggle }) => {
               <div className="flex items-center justify-between mb-6">
                 <h3 className="text-lg font-medium">Payment & Delivery</h3>
                 <div className="flex gap-2">
-                  <button className="p-2 text-gray-400 hover:text-gray-600">
-                    <Edit2 size={18} />
+                  <button className="p-2 text-gray-400 ">
+                  <FontAwesomeIcon icon={faPenToSquare} className='text-lg text-[#98A2B3]' />
                   </button>
                   <button className="p-2 text-gray-400 hover:text-gray-600">
-                    <Trash2 size={18} />
+                    <img src={DeleteIcon} size={18} />
                   </button>
                 </div>
               </div>
@@ -146,17 +153,21 @@ const QuoteDetails = () =>
       {/* Header */}
       <div className="bg-white p-4 flex items-center justify-between shadow">
         <div className="flex items-center">
-          <ChevronLeft className="text-gray-500" />
-          <span className="ml-2">Back</span>
+          <ChevronLeft className="text-[#667185]" />
+          <span className="ml-2 text-[#667185]">Back</span>
         </div>
         <div className="flex items-center">
+          <div className='flex items-center border rounded-lg px-2 py-2  mr-4 space-x-1'>
+          <img src={Search} className="text-[#667185]" />
           <input
             type="search"
             placeholder="Search here..."
-            className="px-4 py-2 border rounded-lg mr-4"
+            className=""
           />
-          <Bell className="text-gray-500 mr-4" />
-          <FontAwesomeIcon className="text-gray-500 mr-4 text-xl"  icon={faComments} />
+          </div>
+          
+          <img src={Bell} className="text-gray-500 mr-4" />
+          <img src={Message} className="text-gray-500 mr-4 text-xl"   />
           <img src={Image1} alt="User" className="w-8 h-8 rounded-full" />
           <ChevronDown className='text-gray-500 mr-4'/>
         </div>
@@ -171,7 +182,7 @@ const QuoteDetails = () =>
             </div>
             <div className="mt-8 flex justify-end space-x-4">
             <Link to='/quote-response1'>
-            <button className="px-6 py-2 bg-blue-600 text-white rounded-lg">
+            <button className="px-6 py-2 bg-[#175CFF] text-white rounded-lg">
                 Respond
             </button>
             </Link>
@@ -184,46 +195,46 @@ const QuoteDetails = () =>
         </div>
 
         <div className="bg-white rounded-lg  p-6">
-          <div className="flex justify-between mb-8 shadow p-6 rounded-lg">
+          <div className="flex justify-between mb-8  p-6 rounded-lg border ">
             <div className="space-y-6">
               <h2 className="text-lg font-semibold">Quote Information</h2>
               <div className=" space-y-4">
                 <div className='flex space-x-[250px]'>
-                  <div className="text-sm text-gray-500">Title</div>
+                  <div className="text-sm text-[#555E68] font-medium">Title</div>
                   <div>{quoteData.title}</div>
                 </div>
                 <div className='flex space-x-[230px]'>
-                  <div className="text-sm text-gray-500">RFQ No</div>
+                  <div className="text-sm text-[#555E68] font-medium">RFQ No</div>
                   <div>{quoteData.rfqNo}</div>
                 </div>
                 <div className='flex space-x-[215px]'>
-                  <div className="text-sm text-gray-500">Requestor</div>
+                  <div className="text-sm text-[#555E68] font-medium">Requestor</div>
                   <div className="flex items-center">
-                    <span className="bg-[#FFECE5] text-black-500 rounded-full px-2 py-1 text-sm mr-2">
-                      {quoteData.requester.initials}
+                    <span className="bg-[#FFECE5] text-[#101928] font-bold rounded-full px-2 py-1 text-sm mr-2">
+                      {quoteData.requester.initials}  
                     </span>
                     {quoteData.requester.name} 
-                    <span className='text-gray-400 ml-1'>• {quoteData.requester.role} </span>
+                    <span className='text-[#98A2B3] font-medium ml-1'>• {quoteData.requester.role} </span>
                   </div>
                 </div>
                 <div className='flex space-x-[240px]'>
-                  <div className="text-sm text-gray-500">Status</div>
+                  <div className="text-sm text-[#555E68] font-medium">Status</div>
                   <div className="bg-[#FFECE5] text-orange-500 rounded px-2 py-1 text-sm mr-2">{quoteData.status}</div>
                 </div>
                 <div className='flex space-x-[205px]'>
-                  <div className="text-sm text-gray-500">Department</div>
+                  <div className="text-sm text-[#555E68] font-medium">Department</div>
                   <div>{quoteData.department}</div>
                 </div>
               </div>
             </div>
             <div className="text-right">
-              <div className="text-sm text-gray-500 mb-2">Expected delivery date: {quoteData.expectedDelivery}</div>
+              <div className="text-sm text-[#344054] font-medium mb-2">Expected delivery date: {quoteData.expectedDelivery}</div>
               <div></div>
               <div className="mt-4 border rounded-lg px-5 text-left pr-52 py-3">
-              <div className="text-sm text-gray-500 mb-2"><FontAwesomeIcon icon={faBuilding} /> Client</div>
+              <div className="text-sm text-gray-500 mb-2 flex"><img src={Building} /> Client</div>
                 <div className='flex'>
                     <div>
-                    <span className="bg-[#FFECE5] text-black-500 rounded-full px-2 py-1 text-sm mr-2">
+                    <span className="bg-[#FFECE5] text-[#101928] font-semibold rounded-full px-2 py-1 text-[10px] mr-2">
                     W                    </span>
                     </div>
                 
@@ -239,20 +250,20 @@ const QuoteDetails = () =>
           </div>
 
           {/* Items Table */}
-          <div className='mb-8 shadow p-6 rounded-lg'>
+          <div className='mb-8 p-6  rounded-lg border '>
             <h3 className="font-semibold mb-4">Item(s)</h3>
-            <table className="w-full">
+            <table className="w-full p-1  rounded-lg border  ">
               <thead className="bg-gray-50">
                 <tr>
                   <th className="w-8 p-3">
                     <input type="checkbox" className="rounded" />
                   </th>
-                  <th className="text-left p-3">Items</th>
-                  <th className="text-left p-3">Variants</th>
-                  <th className="text-left p-3">Quantity</th>
-                  <th className="text-left p-3">Price</th>
-                  <th className="text-left p-3">Amount</th>
-                  <th className="text-left p-3">Expected Delivery Date</th>
+                  <th className="text-left p-3 font-normal text-[#344054] ">Items</th>
+                  <th className="text-left p-3 font-normal text-[#344054]">Variants</th>
+                  <th className="text-left p-3 font-normal text-[#344054]">Quantity</th>
+                  <th className="text-left p-3 font-normal text-[#344054]">Price</th>
+                  <th className="text-left p-3 font-normal text-[#344054]">Amount</th>
+                  <th className="text-left p-3 font-normal text-[#344054]">Expected Delivery Date</th>
                 </tr>
               </thead>
               <tbody>
@@ -265,16 +276,16 @@ const QuoteDetails = () =>
                       <div className="flex items-center">
                         <img src={Misc} alt={item.name} className="w-10 h-10 rounded mr-2" />
                         <div>
-                          <div>{item.name}</div>
-                          <div className="text-sm text-gray-500">#{item.id}</div>
+                          <div className='text-[#101928] font-medium'>{item.name}</div>
+                          <div className="text-sm font-normal text-[#475367]">#{item.id}</div>
                         </div>
                       </div>
                     </td>
-                    <td className="p-3">{item.variant}</td>
-                    <td className="p-3">{item.quantity}</td>
-                    <td className="p-3">{item.price}</td>
-                    <td className="p-3">{item.amount}</td>
-                    <td className="p-3">{item.deliveryDate}</td>
+                    <td className="p-3 text-[#344054] font-normal">{item.variant}</td>
+                    <td className="p-3 text-[#344054] font-normal">{item.quantity}</td>
+                    <td className="p-3 text-[#344054] font-normal">{item.price}</td>
+                    <td className="p-3 text-[#344054] font-normal">{item.amount}</td>
+                    <td className="p-3 text-[#344054] font-normal">{item.deliveryDate}</td>
                   </tr>
                 ))}
               </tbody>
@@ -282,12 +293,12 @@ const QuoteDetails = () =>
 
             <div className="flex justify-end mt-6 space-x-8">
               <div>
-                <div className="text-sm text-gray-500">Sub Total</div>
-                <div className="font-semibold">$8,000.00</div>
+                <div className="text-md text-[#475367] font-normal">Sub Total</div>
+                <div className="text-md text-[#475367] font-normal">$8,000.00</div>
               </div>
               <div>
-                <div className="text-sm text-gray-500">Total</div>
-                <div className="font-semibold">$8,750.00</div>
+                <div className="text-md text-[#475367] font-normal">Total</div>
+                <div className="text-md text-[#475367] font-bold">$8,750.00</div>
               </div>
             </div>
           </div>
@@ -296,10 +307,7 @@ const QuoteDetails = () =>
            <TermsAndAttachments 
                 isOpen={isTermsOpen}
                 onToggle={() => setIsTermsOpen(!isTermsOpen)}
-                />
-
-          {/* Action Buttons */}
-          
+                />          
         </div>
       </div>
     </div>
